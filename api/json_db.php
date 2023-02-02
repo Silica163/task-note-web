@@ -2,13 +2,18 @@
 
 class json_db {
 	// default data
-	public $path;
+	private $path;
 	public $data;
 
 	// set file path
-	public function open($file_path='../data/db.json'){
+	public function __construct($file_path='json_bff.json'){
 		$this->path=$file_path;
-		return true;
+		if(!file_exists($file_path))
+			touch($file_path);
+	}
+	//get databse path
+	public function getPath(){
+		return $this->path;
 	}
 
 	// read data
@@ -21,7 +26,6 @@ class json_db {
 		if (json_last_error() != $JSON_SUCCESS)
 			return false;
 		$this->data=$decoded_data;
-
 		return true;
 	}
 	// write data

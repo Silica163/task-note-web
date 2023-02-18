@@ -1,6 +1,8 @@
 <?php
 // import files
 require_once('json_db.php');
+require_once('read-mode.php');
+require_once('write-mode.php');
 
 // set variable
 $body=file_get_contents("php://input");
@@ -23,5 +25,7 @@ echo $body."\n";
 // read data
 $db_data = new json_db($db_path);
 $db_data->read();
+
+
 
 ?>

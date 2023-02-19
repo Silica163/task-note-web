@@ -13,5 +13,6 @@ function write_data($type,$name,$value,$db){
 		type=>$type,
 		data=>$value
 	]
-	return $db->write();
+	$result = $db->write();
+	return $result;
 ?>

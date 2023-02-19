@@ -26,6 +26,28 @@ echo $body."\n";
 $db_data = new json_db($db_path);
 $db_data->read();
 
+// request structure
+// {
+// 	"mode":"r"|"w",
+// 	"id":String,
+// 	"value":Array|String,
+// 	"type":0|1
+// }
 
+$output = [];
+
+if($body_decode->mode == "r"){
+	$output = read($body_decode->id,$db_data);
+}
+if(body_decode->mode == "w"){
+	$output = write(
+		$body_decode->type,
+		$body_decode->id,
+		$body_decode->val,
+		$db_data
+	);
+}
+
+echo json_encode($output);
 
 ?>

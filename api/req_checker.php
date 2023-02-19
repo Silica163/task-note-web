@@ -21,7 +21,7 @@ function send_error ( $code ) {
 		2 => 'No mode specify.',
 		3 => 'JSON error.',
 		4 => "NO ID.",
-		5 => "NO VALUE OR ID.",
+		5 => "NO VALUE TYPE OR ID.",
 		6 => "file is not writeable or json error."
 	];
 	echo '{"error":"' . $status[$code] . '"}'. "\n";
@@ -65,7 +65,8 @@ if (
 	$body_decode->mode == "w"&&
 	!(
 		property_exists($body_decode,"val") &&
-		property_exists($body_decode,"id")
+		property_exists($body_decode,"id") &&
+		property_exists($body_decode,"type")
 	)
 )send_error(5);
 ?>

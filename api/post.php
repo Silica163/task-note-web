@@ -46,6 +46,6 @@ if($body_decode->mode == "w"){
 }
 
 // echo out the result
-echo json_encode($output);
+echo json_encode($output) . "\n";
 
 ?>

@@ -18,10 +18,8 @@ class json_db {
 
 	// read data
 	public function read(){
-		$file = fopen($this->path,'r');
-		$raw_data = fread($file,filesize($this->path));
-		fclose($file);
-		$decoded_data=json_decode($raw_data);
+		$file = file_get_contents($this->path);
+		$decoded_data=json_decode($file);
 		$JSON_SUCCESS=0;
 		if (json_last_error() != $JSON_SUCCESS)
 			return false;

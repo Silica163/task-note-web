@@ -19,9 +19,6 @@ $config->read();
 // check request
 require_once('req_checker.php');
 
-// echo out request body
-echo $body."\n";
-
 // read data
 $db_data = new json_db($db_path);
 $db_data->read();
@@ -39,7 +36,7 @@ $output = [];
 if($body_decode->mode == "r"){
 	$output = read($body_decode->id,$db_data);
 }
-if(body_decode->mode == "w"){
+if($body_decode->mode == "w"){
 	$output = write(
 		$body_decode->type,
 		$body_decode->id,
@@ -48,6 +45,7 @@ if(body_decode->mode == "w"){
 	);
 }
 
+// echo out the result
 echo json_encode($output);
 
 ?>

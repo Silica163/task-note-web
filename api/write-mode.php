@@ -12,7 +12,8 @@ function write_data($type,$name,$value,$db){
 		name=>$name,
 		type=>$type,
 		data=>$value
-	]
+	];
 	$result = $db->write();
 	return $result;
+}
 ?>

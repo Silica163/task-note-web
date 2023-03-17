@@ -30,9 +30,10 @@ class json_db {
 	public function write(){
 		$data_json = json_encode($this->data);
 		$JSON_SUCCESS=0;
-		if(!is_writeable($filepath) || json_last_error() != $JSON_SUCCESS)
+		$JSON_STT = json_last_error();
+		if(!is_writeable($this->path) || !($JSON_STT == $JSON_SUCCESS))
 			return false;
-		$file = fopen($file_path,"w");
+		$file = fopen($this->path,"w");
 		$write_stt=fwrite($file,$data_json);
 		fclose($file);
 

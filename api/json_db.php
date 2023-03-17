@@ -19,7 +19,7 @@ class json_db {
 	// read data
 	public function read(){
 		$file = file_get_contents($this->path);
-		$decoded_data=json_decode($file);
+		$decoded_data=json_decode($file,true);
 		$JSON_SUCCESS=0;
 		if (json_last_error() != $JSON_SUCCESS)
 			return false;
@@ -28,7 +28,7 @@ class json_db {
 	}
 	// write data
 	public function write(){
-		$data_json = json_decode($this->data);
+		$data_json = json_encode($this->data);
 		$JSON_SUCCESS=0;
 		if(!is_writeable($filepath) || json_last_error() != $JSON_SUCCESS)
 			return false;

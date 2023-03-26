@@ -3,7 +3,9 @@
 <head>
 	<title>task-note</title>
 	<link rel="stylesheet" href="./css/main.css">
-	<script src="./src/config.js" defer></script>
+	<script src="./src/config.js" ></script>
+	<script src="./src/storage.js" ></script>
+	<script src="./src/rest.js" ></script>
 	<script src="./src/index.js" defer></script>
 	<meta charset="utf-8">
 	<!--	<meta http-equiv="refresh" content="10;url=.">-->
@@ -14,13 +16,13 @@
 
 	<!-- VIEWER -->
 	<section id=board>
-		<div>asdkfjlakjsdfja;jsfaj;jsf</div>
+		<div class=item></div>
 	</section>
 
 
 	<!-- EDITOR -->
 	<section id=editor class=editor>
-		<label><input class=editor type=text value=untitle id=title></input></label>
+		<input class=editor type=text value=untitle id=title></input>>
 		<textarea class=editor id=note></textarea>
 		<button class=editor id=save>SAVE</button>
 	</section>

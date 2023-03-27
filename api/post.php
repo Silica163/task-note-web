@@ -27,7 +27,7 @@ $db_data->read();
 // {
 // 	"mode":"r"|"w",
 // 	"id":String,
-// 	"value":Array|String,
+// 	"val":Array|String,
 // 	"type":0|1
 // }
 

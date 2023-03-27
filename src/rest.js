@@ -13,6 +13,8 @@ function getItem(id){
 		mode:"r",
 		id:id
 	}).then(res=>{
-		res.json().then(console.log);
+		res.json()
+			.then(reciveItem)
+			.catch(console.warn);
 	}).catch(console.warn);
 }

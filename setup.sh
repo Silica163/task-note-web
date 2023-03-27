@@ -13,12 +13,12 @@ cat << EOF > $DIR_NAME/db.json
 		"item2"
 	],
 	"item1":{
-		"name":"item1",
+		"id":"item1",
 		"type":1,
 		"data":"this is just a test"
 	},
 	"item2":{
-		"name":"item2",
+		"id":"item2",
 		"type":0,
 		"data":["this", "is", "another", "test"]
 	}

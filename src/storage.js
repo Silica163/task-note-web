@@ -25,11 +25,3 @@ function updateNL(nl){
 function reciveItem({type,data,id}){
 	writeLocal(id,{type:type,data:data});
 }
-
-function writeItem(id){
-	var ld = local.get(id);
-	var data = {
-		ld,
-		id:id
-	}
-}

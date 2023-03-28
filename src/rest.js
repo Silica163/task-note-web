@@ -18,3 +18,17 @@ function getItem(id){
 			.catch(console.warn);
 	}).catch(console.warn);
 }
+function writeItem(id){
+	var ld = local.get(id);
+	var data = {
+		mode:"w",
+		val:ld.data,
+		type:ld.type,
+		id:id
+	}
+	post_data(data).then(res=>{
+		res.json().then(d=>{
+			 console.log("write",d ? "success" : "fail",".");
+		}).catch(console.warn);
+	}).catch(console.warn);
+}

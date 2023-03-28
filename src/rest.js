@@ -20,6 +20,11 @@ function getItem(id){
 }
 function writeItem(id){
 	var ld = local.get(id);
+	if(id == name_list){
+		console.log("cannot write to",name_list);
+		return 0;
+	}
+	updateLS();
 	var data = {
 		mode:"w",
 		val:ld.data,
@@ -28,7 +33,8 @@ function writeItem(id){
 	}
 	post_data(data).then(res=>{
 		res.json().then(d=>{
-			 console.log("write",d ? "success" : "fail",".");
+			if(typeof d == "number")console.log("write success.");
+			if(typeof d == "object")console.log(d.error);
 		}).catch(console.warn);
 	}).catch(console.warn);
 }

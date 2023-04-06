@@ -30,6 +30,7 @@ input.editor{
 	position:relative;
 	left:50%;
 	transform:translate(-50%,0);
+	display:flex;
 }
 textarea.editor{
 	padding:auto;
@@ -38,6 +39,7 @@ textarea.editor{
 	transform:translate(-50%,0);
 	width:80%;
 	height:80%;
+	display:flex;
 }
 button.editor{
 	position:absolute;

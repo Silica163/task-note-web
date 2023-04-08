@@ -9,7 +9,7 @@ function createList(data){
 	for(let [check,task] of data){
 		let chk = document.createElement("input");
 		chk.setAttribute("type","checkbox");
-		chk.checked = check === 0 ? true : false;
+		chk.checked = check === 0 ? false : true ;
 		chk.disabled = true;
 		chk.id = Math.random();
 		let text = document.createElement("label");
@@ -25,6 +25,7 @@ function getCard(id,{data,type}){
 	title.innerHTML = id;
 	card.className = "item";
 	card.appendChild(title);
+	card.innerHTML += "<hr>";
 
 	let d_data = {};
 	switch (type){

@@ -20,7 +20,12 @@ cat << EOF > $DIR_NAME/db.json
 	"item2":{
 		"id":"item2",
 		"type":0,
-		"data":["this", "is", "another", "test"]
+		"data":[
+			[0,"this"],
+			[1,"is"],
+			[1,"another"],
+			[0,"test"]
+		]
 	}
 }
 EOF

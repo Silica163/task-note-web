@@ -5,17 +5,21 @@
 *{
 	color:var(--fg);
 	background-color:var(--bg);
+	border-radius:0px;
 }
 html{
 	font-family:monospace;
-	max-width:700px;
+	max-width:800px;
 	margin-left:auto;
 	margin-right:auto;
 }
 
 section{
+	padding-top:15px;
+	padding-bottom:15px;
 }
 
+/* board section */
 #board{
 	display:flex;
 	flex-direction:unset;
@@ -23,50 +27,53 @@ section{
 	gap:10px 10px;
 }
 .item{
-	padding:5px;
-	width:250px;
-	min-height:200px;
-	border-color:var(--fg);
+	padding:10px;
+	width:230px;
+	min-height:150px;
 	border-width:2px;
 	border-style:solid;
 }
 
 /*editor section*/
-section.editor{
+#editor{
 	position:absolute;
 	border-style:solid;
 	border-width:2px;
-	border-color:var(--fg);
 	border-radius:4px;
 	width:300px;
 	height:400px;
+	gap:10px 10px;
+}
+
+#div_edit{
+	gap:10px 10px;
+	display:flex;
+	flex-direction:column;
+}
+
+.editor{
+	border-color:var(--fg);
+	border-style:solid;
+	border-width:2px;
+	width:80%;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+textarea.editor{
+	resize:none;
+	height:320px;
 }
 
 input.editor{
-	height:20px;
-	width:80%;
-	position:relative;
-	left:50%;
-	transform:translate(-50%,0);
-	display:flex;
+	font-size:20px;
 }
-textarea.editor{
-	padding:auto;
+
+#savebtn{
 	position:absolute;
-	left:50%;
-	transform:translate(-50%,0);
-	width:80%;
-	height:80%;
-	display:flex;
-}
-button.editor{
-	position:absolute;
+	border-color:var(--fg);
+	border-style:solid;
+	border-width:2px;
 	bottom:0;
 	right:0;
-
-	padding:5px;
-
-	border-style:solid;
-	border-width:4px;
-	border-color:var(--fg);
 }

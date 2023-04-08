@@ -5,6 +5,11 @@ function updateLS(){
 		var [id ,value] = l_entries.next().value;
 		localStorage.setItem(JSON.stringify(id),JSON.stringify(value));
 	}
+	for(let id of Object.entries(localStorage)){
+		if(id == '"'+name_list+'"')continue;
+		if(id in local.get(name_list))continue;
+		localStorage.removeItem(id);
+	}
 }
 
 function writeLocal(key,value){

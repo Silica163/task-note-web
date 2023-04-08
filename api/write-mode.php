@@ -6,6 +6,14 @@ function write($type,$id,$value,$db){
 function write_data($type,$id,$value,$db){
 	if(!($type == 1 || $type == 0))return false;
 	if($id == "name_list")return false;
+	if($value == NULL){
+		unset(
+			$db->data["name_list"][array_keys($db->data["name_list"],$id)[0]]
+		);
+		unset($db->data[$id]);
+		$result = $db->write();
+		return $result;
+	}
 	$db->data["name_list"][] = $id;
 	$db->data["name_list"] = array_unique($db->data["name_list"]);
 	$db->data[$id] = [

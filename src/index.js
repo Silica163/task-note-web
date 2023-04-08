@@ -4,3 +4,6 @@ post_data({
 }).then((res)=>{
 	res.json().then(updateNL);
 }).catch(console.warn);
+
+
+setTimeout(display,1000);

@@ -13,6 +13,24 @@ html{
 	margin-right:auto;
 }
 
+section{
+}
+
+#board{
+	display:flex;
+	flex-direction:unset;
+	flex-wrap:wrap;
+	gap:10px 10px;
+}
+.item{
+	padding:5px;
+	width:250px;
+	min-height:200px;
+	border-color:var(--fg);
+	border-width:2px;
+	border-style:solid;
+}
+
 /*editor section*/
 section.editor{
 	position:absolute;

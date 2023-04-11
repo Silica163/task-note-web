@@ -4,3 +4,8 @@ const name_list = "name_list";
 const local = new Map();
 
 const board = document.getElementById("board");
+
+function data_ready(){
+	return local.get(name_list).length == Object.keys(localStorage).length - 1 &&
+		local.get(name_list).length == local.size - 1;
+}

@@ -1,6 +1,8 @@
 :root{
 	--fg:#ffbb00;
 	--bg:#222222;
+	--btn-hover:#cca53d;
+	--btn-active:#ffcf4c;
 }
 *{
 	color:var(--fg);
@@ -19,12 +21,29 @@ section{
 	padding-bottom:15px;
 }
 
+button{
+	border-color:var(--fg);
+	border-style:solid;
+	border-width:2px;
+}
+
+button:hover{
+	border-color:var(--btn-hover);
+	color:var(--btn-hover);
+}
+
+button:active{
+	border-color:var(--btn-active);
+	background-color:#CCA53D;
+	color:black;
+}
+
 /* board section */
 #board{
 	display:flex;
 	flex-direction:unset;
 	flex-wrap:wrap;
-	gap:10px 10px;
+	gap:10px;
 }
 .item{
 	padding:10px;
@@ -32,48 +51,46 @@ section{
 	min-height:150px;
 	border-width:2px;
 	border-style:solid;
+	overflow:scroll;
 }
 
 /*editor section*/
 #editor{
-	position:absolute;
 	border-style:solid;
 	border-width:2px;
-	border-radius:4px;
 	width:300px;
 	height:400px;
-	gap:10px 10px;
-}
-
-#div_edit{
-	gap:10px 10px;
-	display:flex;
-	flex-direction:column;
+	gap:10px;
+	display:grid;
+	grid-template-columns: auto;
+	grid-template-rows: auto;
+	padding-left:10px;
+	padding-right:10px;
 }
 
 .editor{
 	border-color:var(--fg);
 	border-style:solid;
 	border-width:2px;
-	width:80%;
-	margin-left:auto;
-	margin-right:auto;
+	width:calc(300px - 10px);
 }
 
-textarea.editor{
-	resize:none;
-	height:320px;
-}
 
 input.editor{
 	font-size:20px;
+	grid-column:1;
+	grid-row:1 ;
 }
 
-#savebtn{
-	position:absolute;
-	border-color:var(--fg);
-	border-style:solid;
-	border-width:2px;
-	bottom:0;
-	right:0;
+textarea.editor,div.editor{
+	resize:none;
+	grid-column:1 ;
+	grid-row:2 / 8 ;
+}
+
+button.editor{
+	width:100%;
+	font-size:20px;
+	grid-row:8;
+	grid-column: 1 ;
 }

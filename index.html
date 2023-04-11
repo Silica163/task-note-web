@@ -23,11 +23,12 @@
 
 	<!-- EDITOR -->
 	<section id=editor>
-		<div id=div_edit>
-			<input class=editor type=text value=untitle id=title></input>
-			<textarea class=editor id=note></textarea>
+		<input class=editor type=text value=untitle id=title></input>
+		<textarea class=editor id=note></textarea>
+		<div class=editor id=task style=display:none;>
+			<input type=checkbox for=list></input><input type=text id=list></input>
 		</div>
-		<button id=savebtn>SAVE</button>
+		<button class=editor id=savebtn>SAVE</button>
 	</section>
 </body>
 </html>

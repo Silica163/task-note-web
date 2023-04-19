@@ -6,6 +6,7 @@
 	<link rel="icon" href="./favicon.ico">
 	<script src="./src/config.js" defer></script>
 	<script src="./src/storage.js" defer></script>
+	<script src="./src/editor.js" defer></script>
 	<script src="./src/rest.js" defer></script>
 	<script src="./src/output.js" defer></script>
 	<script src="./src/index.js" defer></script>
@@ -22,13 +23,20 @@
 
 
 	<!-- EDITOR -->
-	<section id=editor>
+	<section id=note_editor>
 		<input class=editor type=text value=untitle id=title></input>
 		<textarea class=editor id=note></textarea>
-		<div class=editor id=task style=display:none;>
-			<input type=checkbox for=list></input><input type=text id=list></input>
+		<button class=editor id=savebtn>SAVE</button>
+	</section>
+	
+	<section id=task_editor>
+		<input class=editor type=text value=untitle id=title></input>
+		<div class=editor>
+			<input class=task type=checkbox for=list></input>
+			<input class=task type=text id=list></input>
 		</div>
 		<button class=editor id=savebtn>SAVE</button>
 	</section>
+	
 </body>
 </html>

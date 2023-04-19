@@ -18,7 +18,8 @@ function updateLS(){
 }
 
 // update name_list
-function updateNL(nl){
+function updateNL(s_nl){
+	var nl = Object.values(s_nl);
 	local.set("name_list",nl);
 	for( let i of local.get("name_list")){
 		getItem(i);

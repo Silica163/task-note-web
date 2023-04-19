@@ -19,6 +19,8 @@ html{
 section{
 	padding-top:15px;
 	padding-bottom:15px;
+	margin-top:10px;
+	margin-bottom:10px;
 }
 
 button{
@@ -38,6 +40,10 @@ button:active{
 	color:black;
 }
 
+input[type="checkbox"]:checked{
+	color:var(--fg);
+}
+
 /* board section */
 #board{
 	display:flex;
@@ -51,11 +57,13 @@ button:active{
 	min-height:150px;
 	border-width:2px;
 	border-style:solid;
-	overflow:scroll;
+}
+.item > pre{
+	white-space:pre-wrap;
 }
 
 /*editor section*/
-#editor{
+#note_editor,#task_editor{
 	border-style:solid;
 	border-width:2px;
 	width:300px;
@@ -93,4 +101,10 @@ button.editor{
 	font-size:20px;
 	grid-row:8;
 	grid-column: 1 ;
+}
+
+.task{
+	margin:5px;
+	border-color:var(--fg);
+	border-style:solid;
 }

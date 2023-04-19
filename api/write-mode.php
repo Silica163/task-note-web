@@ -8,14 +8,17 @@ function write_data($type,$id,$value,$db){
 	if($id == "name_list")return false;
 	if($value == NULL){
 		unset(
-			$db->data["name_list"][array_keys($db->data["name_list"],$id)[0]]
+			$db->data["name_list"][
+				array_keys($db->data["name_list"],$id)[0]
+			]
 		);
 		unset($db->data[$id]);
+		$db->data["name_list"] = array_values($db->data["name_list"]);
 		$result = $db->write();
 		return $result;
 	}
 	$db->data["name_list"][] = $id;
-	$db->data["name_list"] = array_unique($db->data["name_list"]);
+	$db->data["name_list"] = array_values(array_unique($db->data["name_list"]));
 	$db->data[$id] = [
 		"id"=>$id,
 		"type"=>$type,

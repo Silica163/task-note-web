@@ -20,9 +20,26 @@ function createList(data){
 	return task_div;
 }
 function getCard(id,{data,type}){
-	const card = document.createElement("div");
+	const exists_card = document.getElementById(id);
+
+	var card;
+	var return_data;
+	// if the card was created overwride it insted of create a new one.
+	if(exists_card == null){
+		// card not exists
+		card = document.createElement("div");
+		return_data = card;
+	}
+	else {
+		card = exists_card;
+		return_data = null;
+		//clear card innerHTML
+		card.innerHTML = "";
+	}
+
 	const title = document.createElement("h2");
 	title.innerHTML = id;
+	card.id = id;
 	card.className = "item";
 	card.appendChild(title);
 	card.innerHTML += "<hr>";
@@ -35,7 +52,7 @@ function getCard(id,{data,type}){
 			break;
 	}
 	card.appendChild(d_data);
-	return card;
+	return return_data;
 }
 
 function addToBoard(card){
@@ -48,6 +65,8 @@ function display(){
 			name,
 			local.get(name)
 		);
-		addToBoard(card);
+		// When card is null that's mean it has been created.
+		if(card != null)
+			addToBoard(card);
 	}
 }

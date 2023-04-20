@@ -26,5 +26,5 @@ function saveNote(){
 	local.set(id,{data:data,type:type});
 
 	writeItem(id);
-	display();
+	updateCard(id);
 }

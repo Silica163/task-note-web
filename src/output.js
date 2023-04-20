@@ -19,41 +19,47 @@ function createList(data){
 	}
 	return task_div;
 }
-function getCard(id,{data,type}){
-	const exists_card = document.getElementById(id);
 
-	var card;
-	var return_data;
-	// if the card was created overwride it insted of create a new one.
-	if(exists_card == null){
-		// card not exists
-		card = document.createElement("div");
-		return_data = card;
-	}
-	else {
-		card = exists_card;
-		return_data = null;
-		//clear card innerHTML
-		card.innerHTML = "";
-	}
-
+function createCard(id,{data,type}){
+	const card = document.createElement("div");
 	const title = document.createElement("h2");
 	title.innerHTML = id;
 	card.id = id;
 	card.className = "item";
 	card.appendChild(title);
 	card.innerHTML += "<hr>";
+	card.appendChild(createData({data:data,type:type}));
+	return card;
+}
 
-	let d_data = {};
+function updateCard(id){
+	const data = local.get(id);
+	const card = document.getElementById(id);
+	card.childNodes[2].remove();
+	card.appendChild(createData(data));
+}
+
+function createData({data,type}){
 	switch (type){
-		case 0:d_data = createList(data);
+		case 0:return createList(data);
 			break;
-		case 1:d_data = createNote(data);
+		case 1:return createNote(data);
 			break;
 	}
-	card.appendChild(d_data);
-	return return_data;
 }
+
+function getCard(id,{data,type}){
+	const exists_card = document.getElementById(id);
+
+	// if the card was created overwride it insted of create a new one.
+	if(exists_card == null){
+		return createCard(id,{data:data,type:type});
+	}
+
+	updateCard(id);
+	return null;
+}
+
 
 function addToBoard(card){
 	board.appendChild(card);

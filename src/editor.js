@@ -12,12 +12,19 @@ function getNoteData(){
 	data.id = id;
 	data.type = 1;
 	data.data = value;
+
+	note_comp['title'].value = "";
+	note_comp['note'].value = "";
 	return data;
 }
 
 function saveNote(){
 	const {id,data,type} = getNoteData();
+
+	// update local
+	local.set(name_list,local.get(name_list).concat(id));
 	local.set(id,{data:data,type:type});
+
 	writeItem(id);
 	display();
 }

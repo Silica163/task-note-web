@@ -1,6 +1,16 @@
+function deleteCard(e){
+	if(e.buttons != 1)return;
+	const id = e.target.parentNode.id;
+
+	const card = document.getElementById(id);
+	if(card != null)card.remove();
+
+	removeItem(id);
+}
+
 function createNote(data){
 	const em = document.createElement("pre");
-	em.innerHTML = data;
+	em.innerText = data;
 	return em;
 }
 
@@ -13,29 +23,37 @@ function createList(data){
 		chk.disabled = true;
 		chk.id = Math.random();
 		let text = document.createElement("label");
-		text.innerHTML = task;
+		text.innerText = task;
 		text.setAttribute("for",chk.id);
 		task_div.append(chk,text,document.createElement("br"));
 	}
 	return task_div;
 }
 
-function createCard(id,{data,type}){
+function createCard(id){
+	const {data,type} = local.get(id);
 	const card = document.createElement("div");
 	const title = document.createElement("h2");
-	title.innerHTML = id;
+	title.innerText = id;
 	card.id = id;
 	card.className = "item";
 	card.appendChild(title);
-	card.innerHTML += "<hr>";
+	card.innerHTML += "<div class=del>X</div><hr>";
 	card.appendChild(createData({data:data,type:type}));
+
+	card.childNodes[1].addEventListener("mousedown",deleteCard);
 	return card;
 }
 
 function updateCard(id){
 	const data = local.get(id);
 	const card = document.getElementById(id);
-	card.childNodes[2].remove();
+	if(data.data == null || data.data == ""){
+		removeItem(id);
+		card.remove();
+		return null;
+	}
+	card.childNodes[3].remove();
 	card.appendChild(createData(data));
 }
 
@@ -48,12 +66,12 @@ function createData({data,type}){
 	}
 }
 
-function getCard(id,{data,type}){
+function getCard(id){
 	const exists_card = document.getElementById(id);
 
 	// if the card was created overwride it insted of create a new one.
 	if(exists_card == null){
-		return createCard(id,{data:data,type:type});
+		return createCard(id);
 	}
 
 	updateCard(id);
@@ -67,10 +85,7 @@ function addToBoard(card){
 
 function display(){
 	for(let name of local.get(name_list)){
-		let card = getCard(
-			name,
-			local.get(name)
-		);
+		let card = getCard(name);
 		// When card is null that's mean it has been created.
 		if(card != null)
 			addToBoard(card);

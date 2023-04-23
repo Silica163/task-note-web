@@ -1,4 +1,3 @@
-// update localStorage
 function updateLS(){
 	const l_entries = local.entries();
 
@@ -10,14 +9,12 @@ function updateLS(){
 	for(let id of Object.keys(localStorage)){
 		if(id == name_list)continue;
 		if(local.get(name_list).indexOf(id) != -1)continue;
-		console.log(id);
 		localStorage.removeItem(id);
 	}
 
 	if (data_ready())display();
 }
 
-// update name_list
 function updateNL(s_nl){
 	var nl = Object.values(s_nl);
 	local.set("name_list",nl);
@@ -26,8 +23,18 @@ function updateNL(s_nl){
 	}
 }
 
-// execute when revive an item.
 function reciveItem({type,data,id}){
 	local.set(id,{type:type,data:data});
 	updateLS();
+}
+
+function removeItem(id){
+	var nl = local.get(name_list).filter((value)=>{
+		return value != id;
+	});
+	local.set(name_list,nl);
+	local.delete(id);
+	localStorage.setItem(name_list,JSON.stringify(nl));
+	localStorage.removeItem(id);
+	writeItem(id);
 }

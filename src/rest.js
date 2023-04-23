@@ -20,6 +20,10 @@ function getItem(id){
 }
 function writeItem(id){
 	var ld = local.get(id);
+	if( ld == undefined)ld = {
+		data:null,
+		type:0
+	};
 	if(id == name_list){
 		console.log("cannot write to",name_list);
 		return 0;
@@ -33,7 +37,6 @@ function writeItem(id){
 	}
 	post_data(data).then(res=>{
 		res.json().then(d=>{
-			if(typeof d == "number")console.log("write success.");
 			if(typeof d == "object")console.log(d.error);
 		}).catch(console.warn);
 	}).catch(console.warn);

@@ -18,8 +18,10 @@ function getNoteData(){
 	return data;
 }
 
-function saveNote(){
+function saveNote(e){
+	if(e.buttons != 1)return;
 	const {id,data,type} = getNoteData();
+	if(id == null || id == "")return ;
 
 	// update local
 	local.set(name_list,local.get(name_list).concat(id));

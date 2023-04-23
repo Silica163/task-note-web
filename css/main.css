@@ -57,10 +57,24 @@ input[type="checkbox"]:checked{
 	min-height:150px;
 	border-width:2px;
 	border-style:solid;
+	position:relative;
 }
+
 .item > pre{
 	white-space:pre-wrap;
 }
+
+.del {
+	top:10px;
+	right:10px;
+	position:absolute;
+	font-size:1.3em;
+}
+
+.del:hover{
+	cursor:pointer;
+}
+
 
 /*editor section*/
 #note_editor,#task_editor{

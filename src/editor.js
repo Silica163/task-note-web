@@ -28,5 +28,6 @@ function saveNote(e){
 	local.set(id,{data:data,type:type});
 
 	writeItem(id);
-	updateCard(id);
+	const card = getCard(id);
+	if(card != null)addToBoard(card);
 }

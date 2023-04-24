@@ -58,7 +58,7 @@ function editList(id){
 	const listboard = list_comp["task"];
 	listboard.innerHTML = "";
 	for(let [check, task] of data){
-		let text = document.createElement("lebel");
+		let text = document.createElement("label");
 		let chk = document.createElement("input");
 		chk.type = "checkbox";
 		chk.disabled = false;

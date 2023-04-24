@@ -14,6 +14,7 @@ function getNoteData(){
 	data.data = value;
 
 	note_comp['title'].value = "";
+	note_comp['title'].disabled = false;
 	note_comp['note'].value = "";
 	return data;
 }
@@ -30,4 +31,11 @@ function saveNote(e){
 	writeItem(id);
 	const card = getCard(id);
 	if(card != null)addToBoard(card);
+}
+
+function editNote(id){
+	const {type,data} = local.get(id);
+	note_comp['title'].value = id;
+	note_comp['title'].disabled = true;
+	note_comp['note'].value = data;
 }

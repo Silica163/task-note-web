@@ -8,6 +8,18 @@ function deleteCard(e){
 	removeItem(id);
 }
 
+function editCard(e){
+	if(e.buttons != 1)return;
+	if(e.target.className == "del")return;
+	const id = e.target.closest("section > div").id;
+	switch(local.get(id).type){
+		case 0 : console.log("can't edit",'"'+id+'"',"because editor is not ready");
+			break;
+		case 1 : editNote(id);
+			break;
+	}
+}
+
 function createNote(data){
 	const em = document.createElement("pre");
 	em.innerText = data;
@@ -42,6 +54,7 @@ function createCard(id){
 	card.appendChild(createData({data:data,type:type}));
 
 	card.childNodes[1].addEventListener("mousedown",deleteCard);
+	card.addEventListener("mousedown",editCard);
 	return card;
 }
 

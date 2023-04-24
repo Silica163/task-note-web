@@ -64,6 +64,8 @@ input[type="checkbox"]:checked{
 
 .item > pre{
 	white-space:pre-wrap;
+	overflow-y:scroll;
+	max-height:85%;
 }
 
 .del {

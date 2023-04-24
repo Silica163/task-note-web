@@ -1,3 +1,12 @@
+// editor 
+
+function edit(id){
+	const {data,type} = local.get(id);
+	if(type == 0)editList(id);
+	if(type == 1)editNote(id);
+}
+
+// note editor
 const note = document.getElementById("note_editor");
 
 note.children["savebtn"].addEventListener("mousedown",saveNote);
@@ -25,7 +34,6 @@ function getNoteData(){
 }
 
 function saveNote(e){
-	if(e.buttons != 1)return;
 	const {id,data,type} = getNoteData();
 	if(id == null || id == "")return ;
 
@@ -62,18 +70,27 @@ function resetListData(){
 
 function editList(id){
 	const {type,data} = local.get(id);
+
 	list_comp["title"].value = id;
 	list_comp['title'].disabled = true;
+
 	const listboard = list_comp["task"];
 	listboard.innerHTML = "";
+
 	for(let [check, task] of data){
 		let text = document.createElement("label");
 		let chk = document.createElement("input");
+
 		chk.type = "checkbox";
-		text.appendChild(chk);
+		text.append(chk);
 		text.innerHTML += task;
-		text.childNodes[0].checked = check === 0 ? false : true;
+		text.children[0].checked = check === 0 ? false : true;
+
 		listboard.append(text,document.createElement("br"));
 	}
-	listboard.innerHTML += "[ ] <input type=text></input><br>";
+
+	listboard.append(
+		"[ ] ",
+		document.createElement("input",{type:"text"})
+	);
 }

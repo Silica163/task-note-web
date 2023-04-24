@@ -12,12 +12,7 @@ function editCard(e){
 	if(e.buttons != 1)return;
 	if(e.target.className == "del")return;
 	const id = e.target.closest("section > div").id;
-	switch(local.get(id).type){
-		case 0 : editList(id);
-			break;
-		case 1 : editNote(id);
-			break;
-	}
+	edit(id);
 }
 
 function createNote(data){

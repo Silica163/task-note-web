@@ -1,0 +1,35 @@
+/* board section */
+#board{
+	display:flex;
+	flex-direction:unset;
+	flex-wrap:wrap;
+	gap:10px;
+}
+.item{
+	padding:10px;
+	width:230px;
+	min-height:150px;
+	max-height:500px;
+	border-width:2px;
+	border-style:solid;
+	position:relative;
+	word-break: break-word;
+}
+
+.item > pre{
+	white-space:pre-wrap;
+	overflow-y:scroll;
+	max-height:85%;
+}
+
+.del {
+	top:10px;
+	right:10px;
+	position:absolute;
+	font-size:1.3em;
+}
+
+.del:hover{
+	cursor:pointer;
+}
+

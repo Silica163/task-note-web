@@ -3,6 +3,8 @@
 <head>
 	<title>task-note</title>
 	<link rel="stylesheet" href="./css/main.css">
+	<link rel="stylesheet" href="./css/editor.css">
+	<link rel="stylesheet" href="./css/board.css">
 	<link rel="icon" href="./favicon.ico">
 	<script src="./src/config.js" defer></script>
 	<script src="./src/storage.js" defer></script>
@@ -33,8 +35,7 @@
 	<section id=task_editor>
 		<input class=editor type=text value=untitle id=title></input>
 		<div class=editor id=task>
-			<input class=task type=checkbox for=list></input>
-			<input class=task type=text id=list></input>
+			[ ] <input class=task type=text id=list></input>
 		</div>
 		<button class=editor id=cancelbtn>CANCEL</button>
 		<button class=editor id=savebtn>SAVE</button>

@@ -30,7 +30,8 @@ function saveNote(e){
 	if(id == null || id == "")return ;
 
 	// update local
-	local.set(name_list,local.get(name_list).concat(id));
+	if(local.get(id) == undefined)
+		local.set(name_list,local.get(name_list).concat(id));
 	local.set(id,{data:data,type:type});
 
 	writeItem(id);
@@ -49,7 +50,15 @@ function editNote(id){
 
 const list = document.getElementById("task_editor");
 
+list.children['cancelbtn'].addEventListener('click',resetListData);
+
 const list_comp = list.children;
+
+function resetListData(){
+	list_comp['title'].value = "";
+	list_comp['title'].disabled = false;
+	list_comp['task'].innerHTML = "[ ] <input></input><br>";
+}
 
 function editList(id){
 	const {type,data} = local.get(id);
@@ -61,10 +70,10 @@ function editList(id){
 		let text = document.createElement("label");
 		let chk = document.createElement("input");
 		chk.type = "checkbox";
-		chk.disabled = false;
 		text.appendChild(chk);
 		text.innerHTML += task;
-		text.children[0].checked = check === 0 ? false : true;
+		text.childNodes[0].checked = check === 0 ? false : true;
 		listboard.append(text,document.createElement("br"));
 	}
+	listboard.innerHTML += "[ ] <input type=text></input><br>";
 }

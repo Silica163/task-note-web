@@ -1,8 +1,15 @@
 const note = document.getElementById("note_editor");
 
 note.children["savebtn"].addEventListener("mousedown",saveNote);
+note.children['cancelbtn'].addEventListener('click',resetNoteData);
 
 const note_comp = note.children;
+
+function resetNoteData(){
+	note_comp['title'].value = "";
+	note_comp['title'].disabled = false;
+	note_comp['note'].value = "";
+}
 
 function getNoteData(){
 	const data = {};
@@ -13,9 +20,7 @@ function getNoteData(){
 	data.type = 1;
 	data.data = value;
 
-	note_comp['title'].value = "";
-	note_comp['title'].disabled = false;
-	note_comp['note'].value = "";
+	resetNoteData();
 	return data;
 }
 

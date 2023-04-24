@@ -13,7 +13,7 @@ function editCard(e){
 	if(e.target.className == "del")return;
 	const id = e.target.closest("section > div").id;
 	switch(local.get(id).type){
-		case 0 : console.log("can't edit",'"'+id+'"',"because editor is not ready");
+		case 0 : editList(id);
 			break;
 		case 1 : editNote(id);
 			break;
@@ -30,14 +30,13 @@ function createList(data){
 	const task_div = document.createElement("div");
 	for(let [check,task] of data){
 		let chk = document.createElement("input");
-		chk.setAttribute("type","checkbox");
-		chk.checked = check === 0 ? false : true ;
+		chk.type = "checkbox";
 		chk.disabled = true;
-		chk.id = Math.random();
 		let text = document.createElement("label");
-		text.innerText = task;
-		text.setAttribute("for",chk.id);
-		task_div.append(chk,text,document.createElement("br"));
+		text.append(chk);
+		text.innerHTML += task;
+		text.children[0].checked = check === 0 ? false : true;
+		task_div.append(text,document.createElement("br"));
 	}
 	return task_div;
 }

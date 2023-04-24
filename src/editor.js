@@ -44,3 +44,27 @@ function editNote(id){
 	note_comp['title'].disabled = true;
 	note_comp['note'].value = data;
 }
+
+// list editor
+
+const list = document.getElementById("task_editor");
+
+const list_comp = list.children;
+
+function editList(id){
+	const {type,data} = local.get(id);
+	list_comp["title"].value = id;
+	list_comp['title'].disabled = true;
+	const listboard = list_comp["task"];
+	listboard.innerHTML = "";
+	for(let [check, task] of data){
+		let text = document.createElement("lebel");
+		let chk = document.createElement("input");
+		chk.type = "checkbox";
+		chk.disabled = false;
+		text.appendChild(chk);
+		text.innerHTML += task;
+		text.children[0].checked = check === 0 ? false : true;
+		listboard.append(text,document.createElement("br"));
+	}
+}

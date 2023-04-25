@@ -9,7 +9,7 @@ function edit(id){
 // note editor
 const note = document.getElementById("note_editor");
 
-note.children["savebtn"].addEventListener("mousedown",saveNote);
+note.children["savebtn"].addEventListener("click",saveNote);
 note.children['cancelbtn'].addEventListener('click',resetNoteData);
 
 const note_comp = note.children;
@@ -59,13 +59,45 @@ function editNote(id){
 const list = document.getElementById("task_editor");
 
 list.children['cancelbtn'].addEventListener('click',resetListData);
+list.children['savebtn'].addEventListener('click',saveList);
 
 const list_comp = list.children;
+
+function getListData(){
+	const listboard = list_comp['task'].children[0];
+	var data = {
+		id:list_comp['title'].value,
+		data:[]
+	};
+
+	for(let i of listboard.children){
+		if( i.localName == "br")continue;
+		if( i.localName == "input")continue;
+
+		let check = i.control.checked;
+		data.data.push([Number(check),i.innerText]);
+	}
+
+	resetListData();
+	return data;
+}
+
+function saveList(){
+	const {id,data} = getListData();
+
+	if(local.get(id) == undefined)
+		local.set(name_list,local.get(name_list).concat(id));
+	local.set(id,{data:data,type:0});
+
+	writeItem(id);
+	const card = getCard(id);
+	if(card != null)addToBoard(card);
+}
 
 function resetListData(){
 	list_comp['title'].value = "";
 	list_comp['title'].disabled = false;
-	list_comp['task'].innerHTML = "[ ] <input></input><br>";
+	list_comp['task'].children[0].innerHTML = "";
 }
 
 function editList(id){
@@ -74,7 +106,7 @@ function editList(id){
 	list_comp["title"].value = id;
 	list_comp['title'].disabled = true;
 
-	const listboard = list_comp["task"];
+	const listboard = list_comp["task"].children[0];
 	listboard.innerHTML = "";
 
 	for(let [check, task] of data){
@@ -84,13 +116,8 @@ function editList(id){
 		chk.type = "checkbox";
 		text.append(chk);
 		text.innerHTML += task;
-		text.children[0].checked = check === 0 ? false : true;
+		text.children[0].checked = check ;
 
 		listboard.append(text,document.createElement("br"));
 	}
-
-	listboard.append(
-		"[ ] ",
-		document.createElement("input",{type:"text"})
-	);
 }

@@ -30,7 +30,7 @@ function createList(data){
 		let text = document.createElement("label");
 		text.append(chk);
 		text.innerHTML += task;
-		text.children[0].checked = check === 0 ? false : true;
+		text.children[0].checked = check ;
 		task_div.append(text,document.createElement("br"));
 	}
 	return task_div;

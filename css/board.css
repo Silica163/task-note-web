@@ -19,10 +19,15 @@
 .item > pre{
 	white-space:pre-wrap;
 	overflow-y:scroll;
-	max-height:85%;
+	max-height:80%;
 }
 
-.del {
+.item > div {
+	max-height:85%;
+	overflow-y:scroll;
+}
+
+.item > .del {
 	top:10px;
 	right:10px;
 	position:absolute;

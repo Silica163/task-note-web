@@ -72,7 +72,6 @@ function getListData(){
 
 	for(let i of listboard.children){
 		if( i.localName == "br")continue;
-		if( i.localName == "input")continue;
 
 		let check = i.control.checked;
 		data.data.push([Number(check),i.innerText]);
@@ -85,6 +84,7 @@ function getListData(){
 function saveList(){
 	const {id,data} = getListData();
 
+	if(id == "")return;
 	if(local.get(id) == undefined)
 		local.set(name_list,local.get(name_list).concat(id));
 	local.set(id,{data:data,type:0});
@@ -98,6 +98,7 @@ function resetListData(){
 	list_comp['title'].value = "";
 	list_comp['title'].disabled = false;
 	list_comp['task'].children[0].innerHTML = "";
+	list_comp['task'].children[1].children[0].value = "";
 }
 
 function editList(id){
@@ -110,14 +111,18 @@ function editList(id){
 	listboard.innerHTML = "";
 
 	for(let [check, task] of data){
-		let text = document.createElement("label");
-		let chk = document.createElement("input");
-
-		chk.type = "checkbox";
-		text.append(chk);
-		text.innerHTML += task;
-		text.children[0].checked = check ;
-
-		listboard.append(text,document.createElement("br"));
+		listboard.append(createChecklist(task,check));
 	}
+}
+
+// list adder
+const list_input = document.getElementById("list");
+
+list_input.addEventListener("keyup",appendList);
+
+function appendList(e){
+	if(e.keyCode != 13)return;
+	if(list_input.value == "")return;
+	list_comp['task'].children[0].append(createChecklist(list_input.value));
+	list_input.value = "";
 }

@@ -71,10 +71,8 @@ function getListData(){
 	};
 
 	for(let i of listboard.children){
-		if( i.localName == "br")continue;
-
-		let check = i.control.checked;
-		data.data.push([Number(check),i.innerText]);
+		let list = i.children[0];
+		data.data.push([Number(list.control.check),list.innerText]);
 	}
 
 	resetListData();
@@ -107,11 +105,14 @@ function editList(id){
 	list_comp["title"].value = id;
 	list_comp['title'].disabled = true;
 
-	const listboard = list_comp["task"];
-	listboard.innerHTML = "";
+	const listBoard = list_comp["task"];
+	listBoard.innerHTML = "";
 
 	for(let [check, task] of data){
-		listboard.append(createChecklist(task,check));
+		let div = document.createElement("div");
+		div.className = "checklist";
+		div.append(createChecklist(task,check));
+		listBoard.append(div);
 	}
 }
 
@@ -123,6 +124,10 @@ list_input.addEventListener("keyup",appendList);
 function appendList(e){
 	if(e.keyCode != 13)return;
 	if(list_input.value == "")return;
-	list_comp['task'].append(createChecklist(list_input.value));
+
+	let div = document.createElement("div");
+	div.className = "checklist";
+	div.append(createChecklist(list_input.value));
+	list_comp['task'].append(div);
 	list_input.value = "";
 }

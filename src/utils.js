@@ -1,12 +1,11 @@
 function createChecklist(task,check=0,disabled=false){
 	let text = document.createElement("label");
 	let chk = document.createElement("input");
-	let br = document.createElement('br');
 
 	chk.checked = check;
 	chk.disabled = disabled;
 	chk.type = "checkbox";
-	text.append(chk,task,br);
+	text.append(chk,task);
 	return text;
 
 }
@@ -21,7 +20,7 @@ function createList(data){
 	const task_div = document.createElement("div");
 	task_div.className = "container";
 	for(let [check,task] of data){
-		task_div.append(createChecklist(task,check,true));
+		task_div.append(createChecklist(task,check,true),document.createElement("br"));
 	}
 	return task_div;
 }

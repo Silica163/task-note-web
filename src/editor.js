@@ -64,7 +64,7 @@ list.children['savebtn'].addEventListener('click',saveList);
 const list_comp = list.children;
 
 function getListData(){
-	const listboard = list_comp['task'].children[0];
+	const listboard = list_comp['task'];
 	var data = {
 		id:list_comp['title'].value,
 		data:[]
@@ -97,8 +97,8 @@ function saveList(){
 function resetListData(){
 	list_comp['title'].value = "";
 	list_comp['title'].disabled = false;
-	list_comp['task'].children[0].innerHTML = "";
-	list_comp['task'].children[1].children[0].value = "";
+	list_comp['task'].innerHTML = "";
+	list_comp['add_list'].children[0].value = "";
 }
 
 function editList(id){
@@ -107,7 +107,7 @@ function editList(id){
 	list_comp["title"].value = id;
 	list_comp['title'].disabled = true;
 
-	const listboard = list_comp["task"].children[0];
+	const listboard = list_comp["task"];
 	listboard.innerHTML = "";
 
 	for(let [check, task] of data){
@@ -123,6 +123,6 @@ list_input.addEventListener("keyup",appendList);
 function appendList(e){
 	if(e.keyCode != 13)return;
 	if(list_input.value == "")return;
-	list_comp['task'].children[0].append(createChecklist(list_input.value));
+	list_comp['task'].append(createChecklist(list_input.value));
 	list_input.value = "";
 }

@@ -19,6 +19,7 @@ function createNote(data){
 
 function createList(data){
 	const task_div = document.createElement("div");
+	task_div.className = "container";
 	for(let [check,task] of data){
 		task_div.append(createChecklist(task,check,true));
 	}

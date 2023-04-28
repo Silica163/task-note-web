@@ -45,3 +45,6 @@ input[type="checkbox"]:checked{
 	color:var(--fg);
 }
 
+.container {
+	overflow-y:auto;
+}

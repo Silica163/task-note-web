@@ -72,7 +72,7 @@ function getListData(){
 
 	for(let i of listboard.children){
 		let list = i.children[0];
-		data.data.push([Number(list.control.check),list.innerText]);
+		data.data.push([Number(list.control.checked),list.innerText]);
 	}
 
 	resetListData();
@@ -82,7 +82,7 @@ function getListData(){
 function saveList(){
 	const {id,data} = getListData();
 
-	if(id == "")return;
+	if(id == "" )return;
 	if(local.get(id) == undefined)
 		local.set(name_list,local.get(name_list).concat(id));
 	local.set(id,{data:data,type:0});
@@ -110,8 +110,12 @@ function editList(id){
 
 	for(let [check, task] of data){
 		let div = document.createElement("div");
+		let del = document.createElement("div");
+		del.className = "del";
+		del.innerText = "X";
+		del.addEventListener('click',deleteList);
 		div.className = "checklist";
-		div.append(createChecklist(task,check));
+		div.append(createChecklist(task,check),del);
 		listBoard.append(div);
 	}
 }
@@ -126,8 +130,16 @@ function appendList(e){
 	if(list_input.value == "")return;
 
 	let div = document.createElement("div");
+	let del = document.createElement("div");
+	del.className = "del";
+	del.innerText = "X";
+	del.addEventListener("click",deleteList);
 	div.className = "checklist";
-	div.append(createChecklist(list_input.value));
+	div.append(createChecklist(list_input.value),del);
 	list_comp['task'].append(div);
 	list_input.value = "";
+}
+
+function deleteList(e){
+	e.target.offsetParent.remove();
 }

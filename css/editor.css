@@ -83,3 +83,9 @@ button#cancelbtn{
 	position:relative;
 	width:100%;
 }
+
+.checklist > .del{
+	position:absolute;
+	right:1em;
+	top:0;
+}

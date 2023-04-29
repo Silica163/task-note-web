@@ -45,6 +45,7 @@ function addToBoard(card){
 }
 
 function display(){
+	firstrun = false;
 	for(let name of local.get(name_list)){
 		let card = getCard(name);
 		// When card is null that's mean it has been created.

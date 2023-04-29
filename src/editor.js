@@ -9,7 +9,7 @@ function edit(id){
 // note editor
 const note = document.getElementById("note_editor");
 
-note.children["savebtn"].addEventListener("click",saveNote);
+note.children["savebtn"].addEventListener("click",save);
 note.children['cancelbtn'].addEventListener('click',resetNoteData);
 
 const note_comp = note.children;
@@ -33,19 +33,6 @@ function getNoteData(){
 	return data;
 }
 
-function saveNote(e){
-	const {id,data,type} = getNoteData();
-	if(id == null || id == "")return ;
-
-	// update local
-	if(local.get(id) == undefined)
-		local.set(name_list,local.get(name_list).concat(id));
-	local.set(id,{data:data,type:type});
-
-	writeItem(id);
-	const card = getCard(id);
-	if(card != null)addToBoard(card);
-}
 
 function editNote(id){
 	const {type,data} = local.get(id);
@@ -59,7 +46,7 @@ function editNote(id){
 const list = document.getElementById("task_editor");
 
 list.children['cancelbtn'].addEventListener('click',resetListData);
-list.children['savebtn'].addEventListener('click',saveList);
+list.children['savebtn'].addEventListener('click',save);
 
 const list_comp = list.children;
 
@@ -67,7 +54,8 @@ function getListData(){
 	const listboard = list_comp['task'];
 	var data = {
 		id:list_comp['title'].value,
-		data:[]
+		data:[],
+		type:0
 	};
 
 	for(let i of listboard.children){
@@ -77,19 +65,6 @@ function getListData(){
 
 	resetListData();
 	return data;
-}
-
-function saveList(){
-	const {id,data} = getListData();
-
-	if(id == "" )return;
-	if(local.get(id) == undefined)
-		local.set(name_list,local.get(name_list).concat(id));
-	local.set(id,{data:data,type:0});
-
-	writeItem(id);
-	const card = getCard(id);
-	if(card != null)addToBoard(card);
 }
 
 function resetListData(){
@@ -120,6 +95,11 @@ function editList(id){
 	}
 }
 
+
+function deleteList(e){
+	e.target.offsetParent.remove();
+}
+
 // list adder
 const list_input = document.getElementById("list");
 
@@ -140,6 +120,24 @@ function appendList(e){
 	list_input.value = "";
 }
 
-function deleteList(e){
-	e.target.offsetParent.remove();
+// save function
+function save(e){
+	const parentId = e.target.parentNode.id;
+	var editorData;
+	if(parentId.startsWith("task")){
+		editorData = getListData();
+	} else {
+		editorData = getNoteData();
+	}
+	const {id,type,data} = editorData;
+
+	if(id == "")return;
+	if(local.get(id) == undefined)
+		local.set(name_list,local.get(name_list).concat(id));
+	local.set(id,{data:data,type:type});
+
+	writeItem(id);
+	const card = getCard(id);
+	if(card != null)addToBoard(card);
 }
+

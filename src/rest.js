@@ -28,7 +28,7 @@ function writeItem(id){
 		console.log("cannot write to",name_list);
 		return 0;
 	}
-	updateLS();
+	updateItem(id);
 	var data = {
 		mode:"w",
 		val:ld.data,

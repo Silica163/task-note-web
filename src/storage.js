@@ -3,7 +3,7 @@ function updateLS(){
 
 	for(let i = 0 ;i < local.size;i++){
 		var [id ,value] = l_entries.next().value;
-		localStorage.setItem(id,JSON.stringify(value));
+		updateItem(id);
 	}
 
 	for(let id of Object.keys(localStorage)){
@@ -37,4 +37,8 @@ function removeItem(id){
 	localStorage.setItem(name_list,JSON.stringify(nl));
 	localStorage.removeItem(id);
 	writeItem(id);
+}
+
+function updateItem(id){
+	localStorage.setItem(id,JSON.stringify(local.get(id)));
 }

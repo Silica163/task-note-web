@@ -1,3 +1,9 @@
+const bb = document.getElementById("blur_board");
+bb.addEventListener("click",()=>{
+	resetNoteData();
+	resetListData();
+});
+
 // editor 
 
 function edit(id){
@@ -18,6 +24,8 @@ function resetNoteData(){
 	note_comp['title'].value = "";
 	note_comp['title'].disabled = false;
 	note_comp['note'].value = "";
+	note.setAttribute("status","");
+	bb.setAttribute("status","");
 }
 
 function getNoteData(){
@@ -39,6 +47,8 @@ function editNote(id){
 	note_comp['title'].value = id;
 	note_comp['title'].disabled = true;
 	note_comp['note'].value = data;
+	note.setAttribute("status","active");
+	bb.setAttribute("status","active");
 }
 
 // list editor

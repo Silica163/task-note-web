@@ -1,14 +1,39 @@
 /*editor section*/
+
+#blur_board{
+	display:none;
+	position:fixed;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	backdrop-filter:blur(10px);
+	background-color:#0005;
+	z-index:1;
+}
+#blur_board[status=active]{
+	display:block;
+}
+
 #note_editor,#task_editor{
+	display:none;
+	position:fixed;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+	z-index:2;
+
 	border-style:solid;
 	border-width:2px;
-	width:300px;
-	height:400px;
+	width:50%;
+	height:70%;
 	gap:10px;
-	display:grid;
 	padding-left:10px;
 	padding-right:10px;
 	grid-auto-rows:minmax(auto,100px);
+}
+#note_editor[status=active],#task_editor[status=active]{
+	display:grid;
 }
 
 .editor{

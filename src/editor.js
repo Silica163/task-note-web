@@ -20,6 +20,11 @@ note.children['cancelbtn'].addEventListener('click',resetNoteData);
 
 const note_comp = note.children;
 
+function newNote(){
+	note.setAttribute("status","active");
+	bb.setAttribute("status","active");
+}
+
 function resetNoteData(){
 	note_comp['title'].value = "";
 	note_comp['title'].disabled = false;
@@ -60,6 +65,11 @@ list.children['savebtn'].addEventListener('click',save);
 
 const list_comp = list.children;
 
+function newList(){
+	list.setAttribute("status","active");
+	bb.setAttribute("status","active");
+}
+
 function getListData(){
 	const listboard = list_comp['task'];
 	var data = {
@@ -82,6 +92,8 @@ function resetListData(){
 	list_comp['title'].disabled = false;
 	list_comp['task'].innerHTML = "";
 	list_comp['add_list'].children[0].value = "";
+	list.setAttribute("status","");
+	bb.setAttribute("status","");
 }
 
 function editList(id){
@@ -89,6 +101,8 @@ function editList(id){
 
 	list_comp["title"].value = id;
 	list_comp['title'].disabled = true;
+	list.setAttribute("status","active");
+	bb.setAttribute("status","active");
 
 	const listBoard = list_comp["task"];
 	listBoard.innerHTML = "";

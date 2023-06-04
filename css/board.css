@@ -19,7 +19,7 @@
 .item > pre{
 	white-space:pre-wrap;
 	overflow-y:auto;
-	max-height:80%;
+	max-height:75%;
 }
 
 .item > .del {

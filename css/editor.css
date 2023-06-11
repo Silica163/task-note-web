@@ -30,7 +30,8 @@
 
 	border-style:solid;
 	border-width:2px;
-	width:50%;
+	min-width:50%;
+	max-width:99%;
 	height:70%;
 	gap:10px;
 	padding-left:10px;

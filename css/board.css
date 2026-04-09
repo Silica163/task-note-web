@@ -4,36 +4,44 @@
 	flex-direction:unset;
 	flex-wrap:wrap;
 	gap:10px;
+	margin: auto;
 }
-.item{
+
+.item {
 	padding:10px;
 	width:230px;
 	min-height:150px;
 	max-height:300px;
 	border-width:2px;
 	border-style:solid;
-	position:relative;
+	display: flex;
+	flex-direction: column;
+}
+
+.item .info {
+	display: flex;
+	justify-content: space-between;
+}
+
+.item pre{
+	white-space:pre-wrap;
 	word-break: break-word;
 }
 
-.item > pre{
-	white-space:pre-wrap;
-	overflow-y:auto;
-	max-height:75%;
+.item hr {
+	width: 100%;
 }
 
-.item > .del {
-	top:10px;
-	right:10px;
-	position:absolute;
-	font-size:1.3em;
+.item .del {
+	font-size: 1.5em;
+	width: 2em;
+	height: 2em;
 }
 
-.item > .container {
-	max-height:80%;
+.item button {
+	border-color: var(--fg);
 }
 
-.del:hover{
-	cursor:pointer;
+.item .container {
+	overflow-y: auto;
 }
-

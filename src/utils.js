@@ -11,9 +11,12 @@ function createChecklist(task,check=0,disabled=false){
 }
 
 function createNote(data){
+	const task_div = document.createElement("div");
+	task_div.className = "container";
 	const em = document.createElement("pre");
 	em.innerText = data;
-	return em;
+	task_div.appendChild(em);
+	return task_div;
 }
 
 function createList(data){
@@ -28,16 +31,26 @@ function createList(data){
 function createCard(id){
 	const {data,type} = local.get(id);
 	const card = document.createElement("div");
-	const title = document.createElement("h2");
-	title.innerText = id;
 	card.id = id;
 	card.className = "item";
-	card.appendChild(title);
-	card.innerHTML += "<div class=del>X</div><hr>";
+	const info = document.createElement("div");
+	info.className = "info"
+	info.innerHTML += `<h2>${id}</h2>`
+	const btn = document.createElement("button");
+	btn.className = "del";
+	btn.innerText = "X";
+	btn.addEventListener("click", (e) => {
+		e.stopPropagation()
+		removeItem(id);
+		card.remove()
+	});
+	info.appendChild(btn);
+	card.appendChild(info)
+	card.appendChild(document.createElement("hr"))
 	card.appendChild(createData({data:data,type:type}));
-
-	card.childNodes[1].addEventListener("mousedown",deleteCard);
-	card.addEventListener("mousedown",editCard);
+	card.addEventListener("click", (e)=>{
+		edit(id)
+	});
 	return card;
 }
 

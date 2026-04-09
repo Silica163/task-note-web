@@ -1,5 +1,5 @@
 /*create new item*/
-.newbtn{
+#newItem button{
 	padding:0.5em;
 }
 
@@ -20,7 +20,7 @@
 	display:block;
 }
 
-#note_editor,#task_editor{
+#note_editor, #task_editor{
 	display:none;
 	position:fixed;
 	top:50%;
@@ -30,13 +30,13 @@
 
 	border-style:solid;
 	border-width:2px;
-	min-width:50%;
-	max-width:99%;
-	height:70%;
+	min-width: 50%;
+	max-width: 800px;
+	max-height:600px;
 	gap:10px;
 	padding-left:10px;
 	padding-right:10px;
-	grid-auto-rows:minmax(auto,100px);
+	grid-auto-rows:minmax(auto,50px);
 }
 #note_editor[status=active],#task_editor[status=active]{
 	display:grid;
@@ -46,7 +46,6 @@
 	border-color:var(--fg);
 	border-style:solid;
 	border-width:2px;
-	width:calc(300px - 10px);
 }
 
 
@@ -59,20 +58,17 @@ input.editor{
 
 textarea.editor{
 	resize:none;
-	width:auto;
 	grid-column:1 / 3 ;
 	grid-row:2 / 8 ;
 }
 
 .container.editor{
-	width:auto;
 	grid-column: 1 / 3;
 	grid-row:2 / 7;
 	padding:.5em;
 }
 
 .add_list.editor{
-	width:auto;
 	grid-column:1 / 3;
 	grid-row:7 / 8;
 }

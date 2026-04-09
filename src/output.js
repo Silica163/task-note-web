@@ -1,20 +1,3 @@
-function deleteCard(e){
-	if(e.buttons != 1)return;
-	const id = e.target.parentNode.id;
-
-	const card = document.getElementById(id);
-	if(card != null)card.remove();
-
-	removeItem(id);
-}
-
-function editCard(e){
-	if(e.buttons != 1)return;
-	if(e.target.className == "del")return;
-	const id = e.target.closest("section > div").id;
-	edit(id);
-}
-
 function updateCard(id){
 	const data = local.get(id);
 	const card = document.getElementById(id);
